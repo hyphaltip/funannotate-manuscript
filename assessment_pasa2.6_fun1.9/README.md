@@ -4,7 +4,7 @@ This folder records how well funannotate's gene-prediction training and evidence
 
 - **Versions assessed:** funannotate **v1.9.0-rc.3** (tag `v1.9.0-rc.3`, commit `cd1b5ee`; image `funannotate-1.9.0-rc.3.sif`) and PASApipeline **v2.6.1-rc.2** (hyphaltip/PASApipeline tag `v2.6.1-rc.2`, commit `1044957`). Comparisons against earlier behavior use funannotate `41a2fd7` and the rc.1 image.
 - **As of:** 2026-09-26; sections 4 and 5 added 2026-09-28; sections 6 and 7 added 2026-09-29; sections 8-10 added 2026-09-30.
-- **Sphinx page:** `docs/assessment_pasa2.6_fun1.9.rst`.
+- **Sphinx page:** `assessment_pasa2.6_fun1.9.rst`.
 - **Prepared by:** two Claude Opus 5.5 sessions working for J. Stajich. "REVIEW" did the PASA/evidence side; "SELECT" did the training-data selection side.
 - **Measurement:** every number is from a result file in `data/` or from the BFD project directory named at the end.
 
@@ -670,7 +670,7 @@ The six genomes with PASA held-out gene Sn below 0.5: PASA training was better o
   - Section 11: `expB_augustus_heldout.tsv`, `expB_augustus_heldout_analysis.txt`; scripts `expB_collect_augustus_heldout.py` (runs on the cluster), `expB_analyze_augustus_heldout.py`.
 - Sections 8-9 (2026-09-30): `expC_item3_scores.tsv`, `expC_item3_summary.tsv`, `expC_item3_analysis.txt` (item 3); `expC_error_breakdown.tsv`, `expC_error_breakdown_summary.txt`, `expC_source_accuracy.tsv`, `expC_genemark_vs_final_intron_chain.txt`, `expC_missed_repeat_check.txt`, `expC_noinput_contig_check.txt` (error breakdown). Per-gene classes: `experiment_C/error_breakdown_genes/` in the working data.
 - Section 10: `evmrefit_*` data (weight sets, pilot analysis, source scores, validation deltas and summary) and `scripts/evmrefit_*` (they run from the working-data `evm_refit/` folder under their names without the prefix).
-- `figures/`: PNG (embedded above) and PDF versions of Figures 1-9. `figures/make_figures.py` regenerates all of them from `data/` (`/usr/bin/python3.12 docs/assessment_pasa2.6_fun1.9/figures/make_figures.py`; needs matplotlib).
+- `figures/`: PNG (embedded above) and PDF versions of Figures 1-9. `figures/make_figures.py` regenerates all of them from `data/` (`/usr/bin/python3.12 assessment_pasa2.6_fun1.9/figures/make_figures.py`; needs matplotlib).
 - `scripts/`: the analysis scripts that produced the tables (`training_set_vs_refseq.py`, `titration_analysis.py`, `intron_discordance.py`, `production_f1_scan.py`, `production_identity.py`, `predict_scorer.py`, `diversity.py`, the R13 scripts, and `expB_run_identity.sh`, `expB_measure_identity.py`, `expB_analyze_identity.py`, `expB_count_complete.py`, `expB_analyze_complete_threshold.py`, `expB_gate_sweeps.py`, `expC_*` and `wiring_*`). The `expC_*` scripts run from the working-data `experiment_C/` folder under their names without the `expC_` prefix, because they import each other (`masked_score`, `error_breakdown`, `source_accuracy`).
 - Full code review of the PASA fork: hyphaltip/PASApipeline, `CODE_REVIEW_20260925.md` on branch `rust_optimize`.
 - Working data (UCR HPCC): `/bigdata/stajichlab/shared/projects/BFD/Fungi_BFD_runs/pasa_train_performance_evaluate/` (renamed 2026-09-26 from `do_pasa_rust_vs_perl/`, which is now a symlink).

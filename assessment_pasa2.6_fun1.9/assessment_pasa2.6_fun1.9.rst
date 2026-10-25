@@ -7,7 +7,7 @@ Training and evidence assessment (v1.9.0)
 This page records how well gene-prediction training and transcript evidence perform in
 **funannotate v1.9.0-rc.3** with **PASApipeline v2.6.1-rc.2**, measured against RefSeq annotations in
 September 2026. The data, figures (PNG and PDF), analysis scripts and a Markdown version of this page
-are in ``docs/assessment_pasa2.6_fun1.9/``.
+are in ``assessment_pasa2.6_fun1.9/``.
 
 :Versions assessed: funannotate ``v1.9.0-rc.3`` (commit ``cd1b5ee``); PASApipeline ``v2.6.1-rc.2``
                     (hyphaltip/PASApipeline, commit ``1044957``)
@@ -310,7 +310,7 @@ Open items
 Files
 -----
 
-All paths are relative to ``docs/assessment_pasa2.6_fun1.9/``.
+All paths are relative to ``assessment_pasa2.6_fun1.9/``.
 
 - ``README.md``: this assessment in Markdown, with the full tables.
 - ``evidence_and_alignment_methods.md``: methods and results draft for the evidence and alignment work.

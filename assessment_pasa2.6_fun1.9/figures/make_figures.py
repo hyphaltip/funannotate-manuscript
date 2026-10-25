@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Figures for docs/assessment_pasa2.6_fun1.9 (PNG for the README, PDF for the paper).
+"""Figures for assessment_pasa2.6_fun1.9 (PNG for the README, PDF for the paper).
 
 Every figure reads only files in ../data/. Run from anywhere:
-    /usr/bin/python3.12 docs/assessment_pasa2.6_fun1.9/figures/make_figures.py
+    /usr/bin/python3.12 assessment_pasa2.6_fun1.9/figures/make_figures.py
 
 Palette: the dataviz reference categorical slots, validated with
 validate_palette.js (light mode, surface #fcfcfb): all checks pass; aqua and
