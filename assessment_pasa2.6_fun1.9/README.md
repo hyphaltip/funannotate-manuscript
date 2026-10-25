@@ -635,7 +635,23 @@ The six genomes with PASA held-out gene Sn below 0.5: PASA training was better o
 1. **Held-out accuracy says whether a training set is healthy, not which source is better.** It follows the PASA arm's own outcome, but the BUSCO alternative has its own, differently biased held-out set, so the two are not comparable and the data show it (rho -0.02).
 2. **It adds nothing to the complete-model count gate.** No threshold separates genomes where BUSCO training wins, and every interval includes zero.
 3. **Decision (not made by the user yet):** keep `augustus_accuracy` as a recorded value only. Do not switch the training source on it. n = 40 genomes, one run each, 6 genomes below the line, so a small effect cannot be excluded.
-4. **Not measured:** whether `--optimize_augustus` raises held-out accuracy or locus F1. No experiment B run used it (`augustus.final.training.txt` is absent from all runs). Measuring it needs new runs, for example optimized and plain PASA- and BUSCO-trained Augustus on the six low genomes plus a sample of the others.
+4. **`--optimize_augustus` was measured in experiment D** (results below). It did not raise holdout locus F1 on these 16 genomes.
+
+### Experiment D: does `--optimize_augustus` help?
+
+16 genomes (the 6 below 0.5 held-out gene sensitivity plus 10 spread over the rest), PASA- and BUSCO-trained, each with and without `--optimize_augustus` in step A on the same image (1.9.0-rc.5), scored on held-out chromosomes against RefSeq. The RefSeq GFF3 files were downloaded again from NCBI; re-scoring the stored predictions of two earlier experiment B arms (`busco_r1`, `pasa`; 32 genome and arm pairs) against them reproduced every stored number exactly. Tables: `data/expD_optimize_scores.tsv`, `data/expD_optimize_analysis.txt`; analysis: `scripts/expD_analyze_optimize.py`. Gains are in percentage points of holdout locus F1 (optimized minus plain), mean over genomes with a genome-level bootstrap 95% interval.
+
+| Arm | Held-out gene Sn, plain to optimized | Locus F1 gain, all 16 | Low group (n=6) | Spread group (n=10) | Step A time, plain to optimized |
+|---|---|---|---|---|---|
+| PASA-trained | 0.566 to 0.603 | -0.26 [-0.95, +0.26] | -1.04 [-2.50, -0.05] | +0.21 [-0.21, +0.61] | 5 to 19 min |
+| BUSCO-trained | 0.603 to 0.602 | +0.23 [-0.20, +0.70] | -0.11 [-0.59, +0.32] | +0.43 [-0.13, +1.13] | 9 to 27 min |
+
+- The interval includes zero for every arm and group except the PASA-trained low group, where optimization lowered locus F1 (interval just below zero). The gain does not depend on the starting held-out gene sensitivity (Spearman rho +0.27, p = 0.32 for PASA; +0.28, p = 0.30 for BUSCO) or on the change in held-out gene sensitivity.
+- Optimization raised the held-out gene sensitivity of the PASA-trained arm (0.566 to 0.603) without raising locus F1, so that held-out number is not a proxy for the final result.
+- Run-to-run differences between repeated optimized runs (3 genomes) were 0.00 to 0.10 points, much smaller than the spread of gains between genomes.
+- The image effect (rc.5 plain runs against rc.3 experiment B plain runs) was +0.01 [-0.05, +0.06] for PASA and +0.07 [-0.00, +0.16] for BUSCO, so the comparison is not confounded by the image.
+- It makes step A three to four times slower.
+- **Decision (not made by the user yet):** do not make `--optimize_augustus` automatic and do not use it as the action for low held-out accuracy. n = 16 genomes, one run each, so an effect of a few tenths of a point cannot be excluded. BUSCO completeness of the final proteins is being re-run and is not included here.
 
 ## 12. Open items
 
@@ -651,7 +667,7 @@ The six genomes with PASA held-out gene Sn below 0.5: PASA training was better o
 - Low map rate: the map-rate gate still stops train and removes all RNA-seq evidence. Test whether the reads that map help as evidence (C. siamense Cg363, D. hansenii CBS767 with `--min_rnaseq_map_rate 0`).
 - More genomes below 95% read identity with ≥ 500 complete models, to calibrate an identity gate.
 - A hints-on vs hints-off arm; GeneMark-ET/EP; refitting EVM weights after the fixes.
-- **`--optimize_augustus` (section 11), experiment D (design):** 16 experiment B genomes (the 6 below 0.5 held-out gene sensitivity plus 10 spread over the rest, `data/expD_genomes.tsv`), PASA- and BUSCO-trained, each with and without `--optimize_augustus` in step A on the same image (1.9.0-rc.5), so the flag is the only difference; 3 genomes get a second optimized run to measure run-to-run spread. The experiment B plain runs (image rc.3) are a second baseline and show the image effect. Scored as in experiment B (holdout locus F1, proteome BUSCO), plus step A wall time. Scripts: `expD_select_genomes.py`, `expD_arm_opt.sh`, `expD_submit_opt.sh`, `expD_collect_optimize.py`, `expD_analyze_optimize.py`. Until results are in, optimize is not part of any automatic fallback.
+- **`--optimize_augustus` (section 11), experiment D (design; results in section 11):** 16 experiment B genomes (the 6 below 0.5 held-out gene sensitivity plus 10 spread over the rest, `data/expD_genomes.tsv`), PASA- and BUSCO-trained, each with and without `--optimize_augustus` in step A on the same image (1.9.0-rc.5), so the flag is the only difference; 3 genomes get a second optimized run to measure run-to-run spread. The experiment B plain runs (image rc.3) are a second baseline and show the image effect. Scored as in experiment B (holdout locus F1, proteome BUSCO), plus step A wall time. Scripts: `expD_select_genomes.py`, `expD_arm_opt.sh`, `expD_submit_opt.sh`, `expD_collect_optimize.py`, `expD_analyze_optimize.py`. Until results are in, optimize is not part of any automatic fallback.
 
 ## Files in this folder
 

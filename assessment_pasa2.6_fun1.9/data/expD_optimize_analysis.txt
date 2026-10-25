@@ -1,0 +1,24 @@
+
+[pasa arm] image effect, rc.5 control - rc.3 experiment B plain, locus F1: +0.01 [-0.05, +0.06] (n=16)
+
+== pasa arm: 16 genomes with both plain (same image) and optimized scores
+held-out gene Sn  plain 0.566 -> optimized 0.603 (mean over genomes)
+holdout locus F1 gain, optimized - plain: -0.26 [-0.95, +0.26]   (genomes better/worse by >0.5: 3/5)
+  low group: n=6 gain -1.04 [-2.50, -0.05]
+  spread group: n=10 gain +0.21 [-0.21, +0.61]
+gain vs starting held-out gene Sn: rho=+0.27 p=0.316
+gain vs change in held-out gene Sn: rho=+0.19 p=0.488
+step A wall time: plain 5 min, optimized 19 min (median)
+optimized run-to-run |difference| in locus F1 (n=3): 0.10, 0.04, 0.00
+
+[busco arm] image effect, rc.5 control - rc.3 experiment B plain, locus F1: +0.07 [-0.00, +0.16] (n=16)
+
+== busco arm: 16 genomes with both plain (same image) and optimized scores
+held-out gene Sn  plain 0.603 -> optimized 0.602 (mean over genomes)
+holdout locus F1 gain, optimized - plain: +0.23 [-0.20, +0.70]   (genomes better/worse by >0.5: 5/4)
+  low group: n=6 gain -0.11 [-0.59, +0.32]
+  spread group: n=10 gain +0.43 [-0.13, +1.13]
+gain vs starting held-out gene Sn: rho=+0.28 p=0.3
+gain vs change in held-out gene Sn: rho=-0.06 p=0.828
+step A wall time: plain 9 min, optimized 27 min (median)
+optimized run-to-run |difference| in locus F1 (n=3): 0.05, 0.00, 0.00
