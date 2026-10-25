@@ -4,7 +4,7 @@ This folder records how well funannotate's gene-prediction training and evidence
 
 - **Versions assessed:** funannotate **v1.9.0-rc.3** (tag `v1.9.0-rc.3`, commit `cd1b5ee`; image `funannotate-1.9.0-rc.3.sif`) and PASApipeline **v2.6.1-rc.2** (hyphaltip/PASApipeline tag `v2.6.1-rc.2`, commit `1044957`). Comparisons against earlier behavior use funannotate `41a2fd7` and the rc.1 image.
 - **As of:** 2026-09-26; sections 4 and 5 added 2026-09-28; sections 6 and 7 added 2026-09-29; sections 8-10 added 2026-09-30.
-- **Sphinx page:** `assessment_pasa2.6_fun1.9.rst`.
+- **Sphinx page:** `assessment_pasa2.6_fun1.9.rst` (in this directory; it was a Sphinx page in funannotate).
 - **Prepared by:** two Claude Opus 5.5 sessions working for J. Stajich. "REVIEW" did the PASA/evidence side; "SELECT" did the training-data selection side.
 - **Measurement:** every number is from a result file in `data/` or from the BFD project directory named at the end.
 
