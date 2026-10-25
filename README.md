@@ -10,12 +10,15 @@ the tool repository holds code and its unit tests only.
 | Path | What it is |
 |---|---|
 | `assessment_pasa2.6_fun1.9/` | The assessment: `README.md` (results and open items), `data/` (result tables), `figures/` (plots and `make_figures.py`), `scripts/` (experiments B, C and D, EVM refit, gate sweeps, `predict_scorer.py`, and the analysis scripts) |
+| `docs/training_data_selection_methods.md` | Methods draft for the manuscript: how training data are selected, the gating tests and fallbacks. A copy of the file in funannotate (see the note below) |
 | `benchmark/slurm/` | Slurm batch scripts for the PASA, Trinity, EVM and training benchmarks, and `benchmark_env.sh` |
 | `benchmark/tests/` | Manual benchmark drivers and output checks (`benchmark_*.sh`, `benchmark_*.py`) |
 | `benchmark/plans/` | Notes for running the benchmarks (quick start, Slurm, Trinity Rust) |
 
 The unit tests for the training-source and Augustus gates stay in funannotate (`tests/test_training_source_decision.py`,
-`tests/test_augustus_parameters.py`), and so does the methods draft `docs/training_data_selection_methods.md`.
+`tests/test_augustus_parameters.py`). `docs/training_data_selection_methods.md` here is a copy of the methods draft that also lives in
+funannotate next to the code it describes; it was copied from funannotate commit d2aa7be. Edit the manuscript copy for the paper, and
+keep the funannotate copy in step with code changes (the two can differ).
 
 ## Running notes
 
