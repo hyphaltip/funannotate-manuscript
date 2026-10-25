@@ -1,8 +1,10 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash -l
 # Score one finished experiment D step-B directory against the re-downloaded RefSeq GFF3, then run BUSCO on its proteins.
 # Same commands as the tail of arm_opt.sh (step B), for runs whose predict step finished but whose scoring failed because
 # the RefSeq GFF3 files had been removed.
 #   sbatch expD_rescore_one.sh <experiment_B>/<genome>/<arm>.B
+# BUSCO_ONLY=1 skips the scoring (score.tsv already written); SKIP_BUSCO=1 skips BUSCO. It must run as a login shell (the first
+# line) so that `module load busco` works, as in arm_opt.sh; without it `module load` fails with `conda: unrecognized arguments: --stack`.
 #SBATCH -p stajichlab -c 8 --mem 32G -t 08:00:00
 #SBATCH --exclude=c[01-30]
 #SBATCH -o logs/rescore_%x_%j.out -e logs/rescore_%x_%j.err
@@ -19,10 +21,12 @@ REF=$REFDIR/$ACC.gff.gz
 [ -s "$REF" ] || { echo "missing $REF"; exit 2; }
 PRED=$(ls "$W"/out/predict_results/*.gff3 | grep -v '\.tbl' | head -1)
 module load gffcompare
+if [ -z "${BUSCO_ONLY:-}" ]; then
 rm -f "$W/score.tsv"
 /usr/bin/python3.12 "$X/refseq_benchmark/predict_scorer.py" score \
     --ref-gff3 "$REF" --pred-gff3 "$PRED" --holdout "$G/split.holdout_chroms.txt" \
     --genome "$NAME" --variant "$AD" --out "$W/score.tsv"
+fi
 [ -n "${SKIP_BUSCO:-}" ] && { echo done; exit 0; }
 module load busco/5.8.0
 TMPD=${SCRATCH:-/tmp}/rescore_$$
