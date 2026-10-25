@@ -650,8 +650,9 @@ The six genomes with PASA held-out gene Sn below 0.5: PASA training was better o
 - Optimization raised the held-out gene sensitivity of the PASA-trained arm (0.566 to 0.603) without raising locus F1, so that held-out number is not a proxy for the final result.
 - Run-to-run differences between repeated optimized runs (3 genomes) were 0.00 to 0.10 points, much smaller than the spread of gains between genomes.
 - The image effect (rc.5 plain runs against rc.3 experiment B plain runs) was +0.01 [-0.05, +0.06] for PASA and +0.07 [-0.00, +0.16] for BUSCO, so the comparison is not confounded by the image.
+- BUSCO completeness of the predicted proteins (fungi_odb10), optimized minus plain, in percentage points: PASA-trained +0.18 [-0.08, +0.54] (low group +0.47 [-0.13, +1.33], spread group +0.00 [-0.12, +0.11]); BUSCO-trained +0.01 [-0.19, +0.21] (low group +0.17, spread group -0.09). No change beyond noise; two genomes gained more than 0.5 points in the PASA arm, none lost that much.
 - It makes step A three to four times slower.
-- **Decision (the owner agreed, 2026-10-24):** do not make `--optimize_augustus` automatic and do not use it as the action for low held-out accuracy. n = 16 genomes, one run each, so an effect of a few tenths of a point cannot be excluded. BUSCO completeness of the final proteins is being re-run and is not included here.
+- **Decision (the owner agreed, 2026-10-24):** do not make `--optimize_augustus` automatic and do not use it as the action for low held-out accuracy. n = 16 genomes, one run each, so an effect of a few tenths of a point cannot be excluded.
 
 ## 12. Open items
 
