@@ -651,7 +651,7 @@ The six genomes with PASA held-out gene Sn below 0.5: PASA training was better o
 - Run-to-run differences between repeated optimized runs (3 genomes) were 0.00 to 0.10 points, much smaller than the spread of gains between genomes.
 - The image effect (rc.5 plain runs against rc.3 experiment B plain runs) was +0.01 [-0.05, +0.06] for PASA and +0.07 [-0.00, +0.16] for BUSCO, so the comparison is not confounded by the image.
 - It makes step A three to four times slower.
-- **Decision (not made by the user yet):** do not make `--optimize_augustus` automatic and do not use it as the action for low held-out accuracy. n = 16 genomes, one run each, so an effect of a few tenths of a point cannot be excluded. BUSCO completeness of the final proteins is being re-run and is not included here.
+- **Decision (the owner agreed, 2026-10-24):** do not make `--optimize_augustus` automatic and do not use it as the action for low held-out accuracy. n = 16 genomes, one run each, so an effect of a few tenths of a point cannot be excluded. BUSCO completeness of the final proteins is being re-run and is not included here.
 
 ## 12. Open items
 
